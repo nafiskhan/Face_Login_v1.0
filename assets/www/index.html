@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=320; user-scalable=no" />
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Face Recognition Demo</title>
+
+<style type="text/css">
+button.camera-control {
+  background-color: #f3f3f3;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(50%, #dddddd), color-stop(50%, #d2d2d2), color-stop(100%, #dfdfdf));
+  background-image: -webkit-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+  background-image: linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #b4b4b4;
+  border-right: 1px solid #dfdfdf;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  color: #666;
+  display: block;
+  font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
+  margin: 10px auto;
+  padding: 7px 0;
+  text-shadow: 0 1px 1px #fff;
+  width: 150px;
+}
+
+
+
+button.camera-control:hover {
+    background-color: #e5e5e5;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e5e5), color-stop(50%, #d1d1d1), color-stop(50%, #c4c4c4), color-stop(100%, #b8b8b8));
+    background-image: -webkit-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+    background-image: linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
+    -webkit-box-shadow: inset 0 1px 0 0 #f2f2f2, 0 1px 0 0 #c9c9c9, 0 -1px 2px 1px #e3e3e3;
+    box-shadow: inset 0 1px 0 0 #f2f2f2, 0 1px 0 0 #c9c9c9, 0 -1px 2px 1px #e3e3e3; }
+  button.camera-control:active {
+    -webkit-box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+    box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
+}
+
+ html,body {
+        height:100%;
+        width:100%
+        margin:none;
+        padding:none;
+    }
+
+    #background { 
+        width: 100%; 
+        height: 100%; 
+        position: fixed; 
+        left: 0px; 
+        top: 0px; 
+        z-index: -99999;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    #background img {
+        width:100%;
+        height:100%;
+    }
+
+    #main{ z-index:10;}
+	
+
+	#disablingDiv
+{
+    /* Do not display it on entry */
+    display: none;
+ 
+    /* Display it on the layer with index 1001.
+       Make sure this is the highest z-index value
+       used by layers on that page */
+    z-index:1001;
+     
+    /* make it cover the whole screen */
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+ 
+    /* make it white but fully transparent */
+    background-color: white;
+    opacity:.00;
+    filter: alpha(opacity=00);
+}
+
+
+
+
+	
+</style>
+
+<table align="center"><tr><td>
+<div id="showbar" style="font-size:8pt;padding:2px;border:solid black 1px;visibility:hidden">
+<span id="progress1">&nbsp; &nbsp;</span>
+<span id="progress2">&nbsp; &nbsp;</span>
+<span id="progress3">&nbsp; &nbsp;</span>
+<span id="progress4">&nbsp; &nbsp;</span>
+<span id="progress5">&nbsp; &nbsp;</span>
+<span id="progress6">&nbsp; &nbsp;</span>
+<span id="progress7">&nbsp; &nbsp;</span>
+<span id="progress8">&nbsp; &nbsp;</span>
+<span id="progress9">&nbsp; &nbsp;</span>
+</div>
+</td></tr></table>
+
+<script type="text/javascript" src="js/cordova-2.6.0.js"></script>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8">
+
+var username;
+var password;
+var imageURI;
+
+	var progressEnd = 9; // set to number of progress <span>'s.
+var progressColor = 'blue'; // set to progress bar color
+var progressInterval = 1000; // set to time between updates (milli-seconds)
+
+var progressAt = progressEnd;
+var progressTimer;
+	var pictureSource;  
+    var destinationType;
+	document.addEventListener("deviceready",onDeviceReady,false);
+	
+	 function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+		
+    }
+			
+	function onLogin(){
+	uname = document.getElementById("username").value;
+	upassword = document.getElementById("password").value;
+	if(uname == "" || upassword == "")
+	{
+		navigator.notification.alert("Username or Password can not be blank");
+		navigator.app.loadUrl('file:///android_asset/www/index.html');
+	}
+	else
+	{
+	/*
+	setTimeout(function loadMyUrl(){
+        	              navigator.notification.activityStop();
+                          }, 3000 ); .
+							*/
+				
+				
+				navigator.notification.activityStart("","Loading...");
+				
+				
+				
+					
+					
+	$.ajax({
+			url: 'http://203.109.97.160:81/FaceLoginWebServer/ValidateLogin?name='+document.getElementById('username').value+'&password='+document.getElementById('password').value,
+			success: function(data) {
+				//navigator.notification.alert("HELLO"+data);
+				//it works, do something with the data navigator.app.loadUrl("file:///android_asset/www/user.html");
+				if(data==0)
+				{				
+					navigator.notification.alert("Login Failed. Invalid Credentials.");
+					navigator.app.loadUrl('file:///android_asset/www/index.html');
+					
+				}
+				else{
+	
+					
+					navigator.camera.getPicture(photoSuccess, photoFail, { quality: 50,destinationType: destinationType.FILE_URI,correctOrientation: true });
+				}
+				
+			},
+			error: function() {
+				
+				navigator.app.loadUrl('file:///android_asset/www/index.html');
+								
+			//something went wrong, handle the error and display a message
+			}
+			});
+	}
+	
+	}
+	
+	
+	
+
+	 
+	
+	function photoSuccess(imageData){
+			//sleep(5000);
+			
+						
+							
+							
+							
+			
+							
+			navigator.notification.activityStart("","Loading...");
+			
+			
+			
+		
+
+
+			
+			
+				
+			imageURI=imageData;
+			var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+			options.chunkedMode = false;		
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, 'http://203.109.97.160:81/FaceLoginWebServer/RecieveImageFromAndroid?name='+document.getElementById('username').value, win, fail, options,true);
+	
+	
+	}
+	
+	 function photoFail(message) {
+	 //navigator.notification.alert('in photoSuccess fail');
+       navigator.notification.alert('Failed because: ' + message);
+	  navigator.notification.loadUrl('file:///android_asset/www/index.html');
+    }
+	
+  
+
+
+	 function win(r) {
+	// navigator.notification.alert('in photoSuccess win');
+	//navigator.notification.alert('Response= '+r.response);
+			
+			if(r.response==1){
+			
+				navigator.notification.activityStop();
+				sessionStorage.setItem('USERNAME',document.getElementById('username').value);
+				navigator.app.loadUrl('file:///android_asset/www/test.html');
+				
+			
+			}
+			
+			else if(r.response==0){
+			navigator.notification.activityStop();
+			navigator.notification.alert("Could not Detect your Face \n Please try again");
+			navigator.app.loadUrl('file:///android_asset/www/index.html');
+			
+			}
+			
+			else if(r.response==2){
+			navigator.notification.activityStop();
+			navigator.notification.alert("Your Face has been Saved. Please Re-Login.");
+			navigator.app.loadUrl('file:///android_asset/www/index.html');
+			
+			}
+			
+			
+        }
+
+        function fail(error) {
+            //navigator.notification.alert("An error has occurred: Code = " = error.code);
+			//navigator.app.loadUrl('file:///android_asset/www/index.html');
+			var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+			options.chunkedMode = false;		
+
+            var ft = new FileTransfer();
+             ft.upload(imageURI, 'http://203.109.97.160:81/FaceLoginWebServer/RecieveImageFromAndroid?name='+document.getElementById('username').value, win, fail, options,true);
+        }
+	
+</script>
+
+ </head>
+<body>
+
+<div id="background"><img src="images/background.jpg"></div>
+<center>
+<br/>
+<br/>
+<br/>
+<br/>
+	<img src="images/pagelogo3.gif"><br/><br/>
+	<font style="font-family:arial;color:#818080;font-size:25px"><b>Face Login</b> </font>
+	<br/>
+	<br/>
+	<br/>
+	
+
+	<table>
+		<tr>
+			<td>
+				<font style="font-family:arial;color:#818080;font-size:18px">
+				User ID
+				</font>
+			</td>
+			<td>
+				
+				<input type="text" id="username">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<font style="font-family:arial;color:#818080;font-size:18px">
+
+				Password
+				</font>
+			</td>
+			<td>	
+				<input type="password" id="password">
+			</td>
+		</tr>
+</table>
+
+<br/>
+	
+	<div id="cambuttons">
+	
+	<button class="camera-control" id="userLogin"  onclick="onLogin();" />Login</button>
+	</div>
+ 
+</center>
+
+</body>
+
+</html>

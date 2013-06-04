@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://line25.com/wp-content/uploads/2011/form/demo/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>CSS3 Contact Form</title>
+
+
+</head>
+<style>
+body, div, h1, form, fieldset, input, textarea {
+	margin: 0; padding: 0; border: 0; outline: none;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background: #728eaa;
+	background: -moz-linear-gradient(top, #25303C 0%, #728EAA 100%); /* firefox */	
+
+	font-family: sans-serif; 
+}
+
+#contact {
+	width: 430px; margin: 60px auto; padding: 60px 30px;
+	background: #c9d0de; border: 1px solid #e1e1e1;
+	-moz-box-shadow: 0px 0px 8px #444;
+	-webkit-box-shadow: 0px 0px 8px #444;
+}
+
+h1 {
+	font-size: 35px; color: #445668;
+	text-align: center; margin: 0 0 35px 0; text-shadow: 0px 1px 0px #f2f2f2;
+}
+
+label {
+	float: left; clear: left; margin: 11px 20px 0 0; width: 95px;
+	text-align: right; font-size: 16px; color: #445668; 
+	 text-shadow: 0px 1px 0px #f2f2f2;
+}
+
+input {
+	width: 260px; height: 35px; padding: 5px 20px 0px 20px; margin: 0 0 20px 0; 
+	background: #5E768D;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 16px; color: #f2f2f2; text-transform:  0px -1px 0px #334f71; 
+}
+	input::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	input:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+
+textarea {
+	width: 260px; height: 170px; padding: 12px 20px 0px 20px; margin: 0 0 20px 0; 
+	background: #5E768D;
+	background: -moz-linear-gradient(top, #546A7F 0%, #5E768D 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#546A7F), color-stop(20%,#5E768D)); /* webkit */
+	border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px;
+	-moz-box-shadow: 0px 1px 0px #f2f2f2;-webkit-box-shadow: 0px 1px 0px #f2f2f2;
+	font-family: sans-serif; font-size: 16px; color: #f2f2f2; text-transform:  0px -1px 0px #334f71; 
+}
+	textarea::-webkit-input-placeholder  {
+    	color: #a1b2c3; text-shadow: 0px -1px 0px #38506b;  
+	}
+	textarea:-moz-placeholder {
+	    color: #a1b2c3; text-shadow: 0px -1px 0px #38506b; 
+	}
+	
+input:focus, textarea:focus {
+	background: #728eaa;
+	background: -moz-linear-gradient(top, #668099 0%, #728eaa 20%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#668099), color-stop(20%,#728eaa)); /* webkit */
+}
+
+input[type=submit] {
+	width: 185px; height: 52px; float: right; padding: 10px 15px; margin: 0 15px 0 0;
+	-moz-box-shadow: 0px 0px 5px #999;-webkit-box-shadow: 0px 0px 5px #999;
+	border: 1px solid #556f8c;
+	background: -moz-linear-gradient(top, #718DA9 0%, #415D79 100%); /* firefox */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#718DA9), color-stop(100%,#415D79)); /* webkit */
+	cursor: pointer;
+}
+
+button.camera-control {
+  background-color: #f3f3f3;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(50%, #dddddd), color-stop(50%, #d2d2d2), color-stop(100%, #dfdfdf));
+  background-image: -webkit-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+  background-image: linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
+  border-right: 1px solid #dfdfdf;
+  border-bottom: 1px solid #b4b4b4;
+  border-right: 1px solid #dfdfdf;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
+  color: #666;
+  display: block;
+  font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
+  margin: 10px auto;
+  padding: 7px 0;
+  text-shadow: 0 1px 1px #fff;
+  width: 150px;
+}
+
+</style>
+
+<meta charset="utf-8" />
+  <title>Nucsoft Face</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  <script type="text/javascript" src="js/cordova-2.6.0.js"></script>
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker();
+  });
+  
+  
+  
+var name;
+var income;
+var dob;
+var loan_amount;
+var tenure;
+var comments;
+var address1;
+var address2;
+var product_description;
+var product_ID;
+var tenure;
+
+var pictureSource;  
+var destinationType;
+var imageURI;
+		
+		
+		
+		
+    document.addEventListener("deviceready", onDeviceReady, false);
+	
+	function onDeviceReady() {
+	document.addEventListener("backbutton", onBackKeyDown, false);
+	 pictureSource=navigator.camera.PictureSourceType;
+     destinationType=navigator.camera.DestinationType;	 
+	 //navigator.notification.alert("USERNAME="+sessionStorage.getItem('USERNAME'));
+	}
+	
+	function onBackKeyDown() {
+		//navigator.app.loadUrl('file:///android_asset/www/test.html');
+		navigator.notification.alert("Not Allowed");
+	}
+	
+	function logout()
+	{
+			var r=confirm("Do you want to Logout?");
+			if (r==true)
+			{
+				sessionStorage.clear();
+				navigator.app.loadUrl('file:///android_asset/www/index.html');
+			}
+		
+	}
+
+
+	function submit()
+	{
+		name = document.getElementById("name").value;
+		income = document.getElementById("income").value;
+		loan_amount = document.getElementById("loan").value;
+		tenure = document.getElementById("tenure").value;
+		dob = document.getElementById("datepicker").value;
+		comments = document.getElementById("comments").value;
+		address1 = document.getElementById("address1").value;
+		address2 = document.getElementById("address2").value;
+		product_description = document.getElementById("product_description").value;
+		product_ID = document.getElementById("product_ID").value;
+		
+		/*if(name=="")
+		{
+			navigator.notification.alert("Please Enter your name");
+		}
+		else if(income =="")
+		{
+			navigator.notification.alert("Please Enter your income");
+		}
+		else if(loan_amount=="")
+		{
+			navigator.notification.alert("Please Enter Loan amount");
+		}
+		else if (tenure=="")
+		{
+			navigator.notification.alert("Please Enter Loan Tenure");
+		}
+		else if(dob=="")
+		{
+			navigator.notification.alert("Please Enter Date of Birth");
+		}
+		else if(address1=="")
+		{
+			navigator.notification.alert("Please Enter your Address");
+		}
+		else if(product_description =="")
+		{
+			navigator.notification.alert("Pleasde Enter Product Description");
+		}
+		else if(product_ID=="")
+		{
+			navigator.notification.alert("You have not entered Product ID");
+		}
+		*/
+		if(false){}
+		else
+		{
+		
+			
+	
+			var r=confirm("Do you want to Submit Application?");
+			if (r==true)
+			{
+			navigator.camera.getPicture(photoSuccess, photoFail, {quality:50,destinationType: destinationType.FILE_URI,correctOrientation:true});
+			}
+			
+			
+			
+			
+		/*
+			
+					$.ajax({
+				url: 'http://192.168.11.109:8080/FaceLoginWebServer/LoanApplication?name='+name +'&income=' +income + '&dob=' +dob + '&loan_amount='+loan_amount+'&tenure='+tenure+'&comments='+comments,
+				success: function(data) {
+				
+				if(data==0)
+				{
+				
+					navigator.notification.alert("Can not Submit your Application");
+					navigator.app.loadUrl('file:///android_asset/www/test.html');
+				}
+				else{
+					
+					//navigator.camera.getPicture(photoSuccess, photoFail, {quality:50,destinationType: destinationType.FILE_URI,correctOrientation:true});
+				}
+				
+			},
+			error: function() {
+				
+				navigator.app.loadUrl('file:///android_asset/www/test.html');
+				navigator.notification.alert("Could not Connect to Server");
+				
+				
+			//something went wrong, handle the error and display a message
+			}
+			});
+			*/
+		}
+			
+		
+	}
+	
+	
+	function onConfirm(buttonIndex, errormsg){
+    if (buttonIndex === 1){
+        alert(errormsg);
+    }
+	function errormsg(err)
+	{
+		alert("Errrr");
+	}
+
+}
+		/*function photoSuccess(imageData){
+						
+			alert("Photo Taken Successfully");
+			//imageURI=imageData;
+			var options = new FileUploadOptions();
+			
+            options.fileKey="file";
+            options.fileName=imageData.substr(imageData.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+		
+
+            var ft = new FileTransfer();
+			
+			console.log("--------File Transferring----------");
+			name = document.getElementById("name").value;
+		income = document.getElementById("income").value;
+		loan_amount = document.getElementById("loan").value;
+		tenure = document.getElementById("tenure").value;
+		dob = document.getElementById("datepicker").value;
+		comments = document.getElementById("comments").value;
+		address1 = document.getElementById("address1").value;
+		address2 = document.getElementById("address2").value;
+		product_description = document.getElementById("product_description").value;
+		product_ID = document.getElementById("product_ID").value;
+			
+			
+			
+			//var randomnumber=Math.floor(Math.random()*11);
+			 
+            //ft.upload(imageURI, 'http://192.168.11.109:8080/FaceLoginWebServer/RecieveImageFromAndroid?name='+name, win, fail, options);
+			
+			ft.upload(imageData, 'http://192.168.11.109:8080/FaceLoginWebServer/RecieveImageFromAndroid?name='+name +'&income=' +income + '&dob=' +dob + '&loan_amount='+loan_amount+'&tenure='+tenure+'&comments='+comments + '&randomnumber=' +Math.floor(Math.random()*11), win, fail, options);
+			
+			
+			//ft.upload(imageURI, 'http://192.168.11.109:8080/FaceLoginWebServer/RecieveImageFromAndroid?name='+document.getElementById('name').value, win, fail, options);
+			
+			//navigator.app.loadUrl('file:///android_asset/www/test.html');
+			//navigator.notification.alert('Application Submitted Successfully');
+			
+			$.ajax({
+				url: 'http://192.168.11.109:8080/FaceLoginWebServer/LoanApplication?name='+name +'&income=' +income + '&dob=' +dob + '&loan_amount='+loan_amount+'&tenure='+tenure+'&comments='+comments + '&randomnumber=' +Math.floor(Math.random()*11),
+			success: function(data) {
+				
+				if(data==0)
+				{
+					navigator.notification.alert("Can not Submit your Application");
+					navigator.app.loadUrl('file:///android_asset/www/test.html');
+					
+					
+				}
+				else{
+				
+				alert("Submitted Successfully");
+					navigator.app.loadUrl('file:///android_asset/www/test.html');
+					
+				
+				}
+				
+			},
+			error: function() {
+				
+				navigator.app.loadUrl('file:///android_asset/www/test.html');
+				navigator.notification.alert("Could not Connect to Server");
+				
+				
+			//something went wrong, handle the error and display a message
+			}
+			});
+			
+			
+			
+		}*/
+			
+			function photoSuccess(imageData){
+			navigator.notification.activityStart("Please Wait....","loading");
+			imageURI=imageData;
+			var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+		
+
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, 'http://203.109.97.160:81/FaceLoginWebServer/RecieveImageFromAndroid?name='+sessionStorage.getItem('USERNAME'), win, fail, options);
+	}
+	
+	 function photoFail(message) {
+	 
+      navigator.notification.alert('Please Capture your Photo');
+	  
+	}
+	
+  
+  function win(r) {
+			//navigator.notification.alert(r.response);
+			
+			
+			if(r.response==1){		
+				navigator.notification.activityStop();
+				navigator.notification.alert('Application Submitted Successfully');
+				navigator.app.loadUrl('file:///android_asset/www/test.html');			
+			}
+			else{
+			navigator.notification.activityStop();
+			navigator.notification.alert("Could not Detect your Face \n\t Please try again");
+			navigator.app.loadUrl('file:///android_asset/www/test.html');
+			
+			}
+			
+			
+        }
+ function fail(error) {
+ 
+			var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+		
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, 'http://203.109.97.160:81/FaceLoginWebServer/RecieveImageFromAndroid?name='+sessionStorage.getItem('USERNAME'), win, fail, options);
+           // alert("An error has occurred: Code = " = error.code);
+			//navigator.app.loadUrl('file:///android_asset/www/user_home.html');
+        }
+		
+		
+		
+  
+  </script>
+  
+  
+  
+
+
+  
+  
+  
+<body>
+
+<div id="contact">
+	<h1>Nucsoft Loan Application</h1>
+	
+		
+			<label for="name">Name</label>
+			<input type="text" id="name" placeholder="Enter your full name">
+			
+			<label for="address1">Address</label>
+			<input type="text" id="address1" placeholder="House No./Street/Colony">
+			<label for="address2"></label>
+			<input type="text" id="address2" placeholder="City/State">
+			
+			<label for="datepicker">Date of Birth</label>
+			<input type="tel" id="datepicker" placeholder="dd/mm/yyyy">
+			
+			
+			<label for="product_description">Product Description</label>
+			<input type="text" id="product_description" placeholder="Housing Loan">
+			
+			
+			<label for="product_ID">Product ID</label>
+			<input type="text" id="product_ID" placeholder="P1234">
+			
+			
+			<label for="income">Annual Income</label>
+			<input type="tel" id="income" placeholder="Enter your Annual Income">
+			
+			<label for="loan">Loan Amount</label>
+			<input type="tel" id="loan" placeholder="Loan Amount">
+			
+			<label for="tenure">Tenure (in months)</label>
+			<input type="tel" id="tenure" placeholder="12">
+			
+			
+			
+		
+			
+			<label for="comments">Comments</label>
+			<textarea id="comments" placeholder="Type your Comment Here..."></textarea>
+			
+<table><tr>			
+<td><button onClick="submit();" class="camera-control">Submit Application</button></td><td><button onClick="logout();" class="camera-control">Logout</button></td>
+</tr></table>			
+	
+	
+	
+</div>
+
+
+
+</body></html>
